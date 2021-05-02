@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://morwenn.bzh/crafting.owl"
+         xmlns="http://morwenn.bzh/crafting.owl#">
+
+<owl:Ontology rdf:about="http://morwenn.bzh/crafting.owl"/>
+
+<owl:ObjectProperty rdf:about="#supergroups">
+  <rdfs:domain rdf:resource="#Provider"/>
+  <rdfs:range rdf:resource="#Provider"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#provides">
+  <rdfs:domain rdf:resource="#Provider"/>
+  <rdfs:range rdf:resource="#Product"/>
+  <owl:inverseOf rdf:resource="#is_provided_by"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#is_provided_by">
+  <rdfs:domain rdf:resource="#Product"/>
+  <rdfs:range rdf:resource="#Provider"/>
+  <owl:inverseOf rdf:resource="#provides"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#uses">
+  <rdfs:domain rdf:resource="#Recipe"/>
+  <rdfs:range rdf:resource="#Product"/>
+  <owl:inverseOf rdf:resource="#is_used_by"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#is_used_by">
+  <rdfs:domain rdf:resource="#Product"/>
+  <rdfs:range rdf:resource="#Recipe"/>
+  <owl:inverseOf rdf:resource="#uses"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#produces">
+  <rdfs:domain rdf:resource="#Recipe"/>
+  <rdfs:range rdf:resource="#Product"/>
+  <owl:inverseOf rdf:resource="#is_produced_by"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#is_produced_by">
+  <rdfs:domain rdf:resource="#Product"/>
+  <rdfs:range rdf:resource="#Recipe"/>
+  <owl:inverseOf rdf:resource="#produces"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#link">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#description">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Product"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_somewhat_edible">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Plant"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#text">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Recipe"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Provider">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Product">
+  <rdfs:subClassOf rdf:resource="#Provider"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Plant">
+  <rdfs:subClassOf rdf:resource="#Provider"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Ingredient">
+  <rdfs:subClassOf rdf:resource="#Product"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Tool">
+  <rdfs:subClassOf rdf:resource="#Product"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Recipe">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+
+</rdf:RDF>
