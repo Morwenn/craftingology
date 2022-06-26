@@ -75,6 +75,15 @@ with crafting:
         range = [bool]
 
     ##################################################
+    # Animal
+
+    class Animal(Provider):
+        """
+        Animals are a type of provider identified by their Latin name.
+        """
+        pass
+
+    ##################################################
     # Ingredient
 
     class Ingredient(Product):
