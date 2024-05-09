@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2021 Morwenn
+# Copyright (c) 2021-2024 Morwenn
 # SPDX-License-Identifier: BSL-1.0
 
 import sys
@@ -50,21 +50,51 @@ with crafting:
         simple separation, without any other ingredient nor tool,
         so we can avoid having to write a recipe for that.
         """
-        pass
 
     class is_provided_by(Product >> Provider):
         inverse_property = provides
 
     ##################################################
+    # Living organism
+
+    class Organism(Provider):
+        """
+        Any taxon used to represent living organism.
+        """
+
+    class IUCN(owlready2.Datatype):
+        """
+        IUCN conservation status.
+        """
+        equivalent_to = [owlready2.OneOf([
+            "EX",
+            "EW",
+            "CR",
+            "EN",
+            "VU",
+            "NT",
+            "CD",
+            "LC",
+            "DD",
+            "NE",
+        ])]
+
+    class conservation_status(owlready2.DataProperty, owlready2.FunctionalProperty):
+        """
+        IUCN conversation status of an organism.
+        """
+        domain = [Organism]
+        range = [IUCN]
+
+    ##################################################
     # Plant
 
-    class Plant(Provider):
+    class Plant(Organism):
         """
         Plants are a type of provider identified by their Latin
         name. They generally provide ingredients under their
         common name.
         """
-        pass
 
     class is_somewhat_edible(owlready2.DataProperty, owlready2.FunctionalProperty):
         """
@@ -77,11 +107,10 @@ with crafting:
     ##################################################
     # Animal
 
-    class Animal(Provider):
+    class Animal(Organism):
         """
         Animals are a type of provider identified by their Latin name.
         """
-        pass
 
     ##################################################
     # Ingredient
@@ -91,7 +120,6 @@ with crafting:
         Ingredients are products that will be consumed by recipes
         and are not expected to remain once the recipe is done.
         """
-        pass
 
     ##################################################
     # Tool
@@ -103,7 +131,6 @@ with crafting:
         one the recipe is done. They are also products because it
         is totally possible towrite a recipe to create new tools.
         """
-        pass
 
     ##################################################
     # Recipe
@@ -118,7 +145,6 @@ with crafting:
         can use similar ingredients to produce similar products.
         Supporting such redundancy is a feature.
         """
-        pass
 
     class uses(Recipe >> Product):
         pass
