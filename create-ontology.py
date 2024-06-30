@@ -86,30 +86,33 @@ with crafting:
         domain = [Organism]
         range = [IUCN]
 
-    ##################################################
-    # Plant
-
-    class Plant(Organism):
-        """
-        Plants are a type of provider identified by their Latin
-        name. They generally provide ingredients under their
-        common name.
-        """
-
     class is_somewhat_edible(owlready2.DataProperty, owlready2.FunctionalProperty):
         """
-        Whether some parts of the plant, whether raw or processed,
+        Whether some parts of the organism, whether raw or processed,
         are edible and can be used in the kitchen.
         """
-        domain = [Plant]
+        domain = [Organism]
         range = [bool]
 
     ##################################################
-    # Animal
+    # Kingdoms
+
+    class Plant(Organism):
+        """
+        Plants are a type of provider identified by their binomial name.
+        They generally provide ingredients under their common name.
+        """
+
+    class Fungus(Organism):
+        """
+        Fungus are a type of provider identified by their binomial name.
+        Aerial parts of mushrooms, under their common names, can appear
+        as ingredient.
+        """
 
     class Animal(Organism):
         """
-        Animals are a type of provider identified by their Latin name.
+        Animals are a type of provider identified by their binomail name.
         """
 
     ##################################################
