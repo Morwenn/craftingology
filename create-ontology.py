@@ -86,6 +86,14 @@ with crafting:
         domain = [Organism]
         range = [IUCN]
 
+    class is_protected(owlready2.DataProperty, owlready2.FunctionalProperty):
+        """
+        Whether an organism is locally protected by law. This information
+        applies based on the location of the observation database.
+        """
+        domain = [Organism]
+        range = [bool]
+
     class is_somewhat_edible(owlready2.DataProperty, owlready2.FunctionalProperty):
         """
         Whether some parts of the organism, whether raw or processed,
@@ -112,7 +120,7 @@ with crafting:
 
     class Animal(Organism):
         """
-        Animals are a type of provider identified by their binomail name.
+        Animals are a type of provider identified by their binomial name.
         """
 
     ##################################################
