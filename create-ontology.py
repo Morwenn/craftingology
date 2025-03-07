@@ -111,6 +111,23 @@ with crafting:
         They generally provide ingredients under their common name.
         """
 
+    class EEE(owlready2.Datatype):
+        """
+        Categories of invasive species (EEE = Espèces Exotiques Envahissantes).
+        """
+        equivalent_to = [owlready2.OneOf([
+            "IA1", "IA2", "IA3",
+            "IP1", "IP2", "IP3", "IP4", "IP5",
+            "AS1", "AS2", "AS3", "AS4", "AS5", "AS6",
+        ])]
+
+    class invasiveness_status(owlready2.DataProperty, owlready2.FunctionalProperty):
+        """
+        EEE status of a vascular plant.
+        """
+        domain = [Plant]
+        range = [EEE]
+
     class Fungus(Organism):
         """
         Fungus are a type of provider identified by their binomial name.
