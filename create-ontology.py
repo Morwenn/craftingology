@@ -140,6 +140,12 @@ with crafting:
         Animals are a type of provider identified by their binomial name.
         """
 
+    class Mycetozoa(Organism):
+        """
+        Mycetozoa are a type of provider identified by their binomial name.
+        Some of them can be used as ingredients.
+        """
+
     ##################################################
     # Ingredient
 
